@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package messagebackup;
 
+option go_package = "github.com/aurora-is-near/stream-backup/messagebackup";
+
 message HeaderValues {
     repeated string values = 1;
 }
