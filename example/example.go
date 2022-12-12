@@ -7,7 +7,6 @@ import (
 	"github.com/aurora-is-near/stream-backup/chunks"
 	"github.com/aurora-is-near/stream-backup/messagebackup"
 	"github.com/davecgh/go-spew/spew"
-	"google.golang.org/protobuf/proto"
 )
 
 func main() {
@@ -31,7 +30,7 @@ func main() {
 		}
 
 		var msg messagebackup.MessageBackup
-		if err = proto.Unmarshal(data, &msg); err != nil {
+		if err = msg.UnmarshalVT(data); err != nil {
 			log.Fatal(err)
 		}
 
