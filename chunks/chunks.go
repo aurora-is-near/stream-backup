@@ -15,6 +15,17 @@ import (
 
 var ErrNotFound = errors.New("not found")
 
+type ChunksInterface interface {
+	Open() error
+	GetLeftmostAbsentRange(min, max uint64) (l uint64, r uint64, err error)
+	Flush() error
+	Write(pos uint64, payload []byte) error
+	CloseReader() error
+	SeekReader(pos uint64) error
+	ReadNext() (uint64, []byte, error)
+	GetChunkRanges() []ChunkRange
+}
+
 type ChunkRange struct {
 	L, R uint64
 }
