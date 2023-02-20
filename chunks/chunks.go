@@ -24,6 +24,7 @@ type ChunksInterface interface {
 	SeekReader(pos uint64) error
 	ReadNext() (uint64, []byte, error)
 	GetChunkRanges() []ChunkRange
+	GetChunks() *Chunks
 }
 
 type ChunkRange struct {
@@ -52,6 +53,9 @@ type Chunks struct {
 	readerLastSeek uint64
 }
 
+func (c *Chunks) GetChunks() *Chunks {
+	return c
+}
 func (c *Chunks) Open() error {
 	if err := os.MkdirAll(c.Dir, 0755); err != nil {
 		return err
